@@ -1,5 +1,6 @@
 {
     "name": "snoopmedia/casbundle",
+    "description": "Fork of sensio/CasBundle",
     "version": "1.0.0"
     "homepage": "https://github.com/snoopmedia/CasBundle",
     "autoload": {
