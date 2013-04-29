@@ -6,4 +6,6 @@
         "psr-0": { "Sensio\\CasBundle": "" }
     },
     "target-dir": "Sensio/Bundle/CasBundle",
+    "require": {
+    }
 }
