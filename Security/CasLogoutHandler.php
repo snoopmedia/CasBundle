@@ -2,8 +2,8 @@
 
 namespace Sensio\CasBundle\Security;
 
-use Symfony\Component\HttpKernel\Security\Logout\LogoutHandlerInterface;
-use Symfony\Component\Security\Authentication\Token\TokenInterface;
+use Symfony\Component\Security\Http\Logout\LogoutHandlerInterface;
+use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\CasBundle\Service\Cas;
