@@ -19,6 +19,8 @@
             <argument>%sensio_cas.version%</argument>
             <argument>%sensio_cas.cert%</argument>
             <argument>%sensio_cas.request%</argument>
+            <argument>%auth_service%</argument>
+            <argument type="service" id="router" />
         </service>
 
         <service id="security.authentication.cas_entry_point" class="%security.authentication.cas_entry_point.class%">

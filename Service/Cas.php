@@ -14,6 +14,7 @@ use Sensio\CasBundle\Service\Response\V2Response;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use \Symfony\Bundle\FrameworkBundle\Routing\Router;
 
 class Cas
 {
@@ -21,13 +22,17 @@ class Cas
         $protocol,
         $version,
         $certFile,
-        $requestType;
+        $requestType,
+        $authService,
+        $router;
 
-    public function __construct($baseUri, $version = 2, $certFile = null, $requestType = 'curl')
+    public function __construct($baseUri, $version = 2, $certFile = null, $requestType = 'curl', $authService = 'cas', Router $router)
     {
         $this->version = $version;
         $this->certFile = $certFile;
         $this->requestType = $requestType;
+        $this->authService = $authService;
+        $this->router = $router;
         $this->protocol = $this->getProtocol($baseUri, $version);
     }
 
@@ -50,7 +55,12 @@ class Cas
 
     public function getLoginResponse(Request $request)
     {
-        $uri = $this->protocol->getLoginUri($request->getUri());
+        if ($this->authService == 'cas') {
+            $uri = $this->protocol->getLoginUri($request->getUri());
+        } else {
+            // @todo This is a little bit of a hack
+            $uri = $this->router->generate('saml_login', array(), Router::ABSOLUTE_URL);
+        }
 
         return new RedirectResponse($uri);
     }
